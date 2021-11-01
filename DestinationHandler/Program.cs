@@ -1,6 +1,7 @@
 ﻿using DestinationHandler.HTTP;
 using DestinationHandler.Models;
 using System;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace DestinationHandler
@@ -9,11 +10,17 @@ namespace DestinationHandler
     {
         public static async Task Main()
         {
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            Encoding.GetEncoding("windows-1254");
+
             KenotHTTPClient client = new();
 
             string requestUri = $"{SecuredConstants.ApiRoot}{SecuredConstants.GetWallUploadServerMethod}?{Constants.AccessTokenPropertyName}={SecuredConstants.AccessToken}&{Constants.VersionPropertyName}={Constants.ApiVersion}";
             var response = await client.GetAsync<GetWallUpoadServerResponse>(requestUri);
-            Console.WriteLine(response.Response.UploadUrl);
+            string uploadUrl = response.Response.UploadUrl;
+
+            string filePath = @"C:\Users\antko\OneDrive\Pictures\uzILxZSc_N.jpg";
+            var uploadResponse = await client.PostMediaAsync<MediaUploadResponse>(uploadUrl, filePath);
         }
     }
 }

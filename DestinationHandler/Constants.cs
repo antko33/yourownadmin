@@ -11,5 +11,9 @@
         public const string AlbumIdPropertyName = "album_id";
         public const string UploadUrlPropertyName = "upload_url";
         public const string UserIdPropertyName = "user_id";
+
+        public const string ServerPropertyName = "server";
+        public const string PhotoPropertyName = "photo";
+        public const string HashPropertyName = "hash";
     }
 }
