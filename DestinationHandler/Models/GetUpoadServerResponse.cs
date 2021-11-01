@@ -4,14 +4,14 @@ using System.Runtime.Serialization;
 namespace DestinationHandler.Models
 {
     [DataContract]
-    class GetWallUpoadServerResponse : IHTTPResponse
+    class GetUpoadServerResponse : IHTTPResponse
     {
         [DataMember(Name = Constants.ResponsePropertyName)]
-        public GetWallUploadServerResponseRoot Response { get; set; }
+        public GetUploadServerResponseRoot Response { get; set; }
     }
 
     [DataContract]
-    class GetWallUploadServerResponseRoot
+    class GetUploadServerResponseRoot
     {
         [DataMember(Name = Constants.AlbumIdPropertyName)]
         public int AlbumId { get; set; }

@@ -1,6 +1,5 @@
 ﻿using DestinationHandler.HTTP;
 using DestinationHandler.Models;
-using System;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,12 +14,27 @@ namespace DestinationHandler
 
             KenotHTTPClient client = new();
 
-            string requestUri = $"{SecuredConstants.ApiRoot}{SecuredConstants.GetWallUploadServerMethod}?{Constants.AccessTokenPropertyName}={SecuredConstants.AccessToken}&{Constants.VersionPropertyName}={Constants.ApiVersion}";
-            var response = await client.GetAsync<GetWallUpoadServerResponse>(requestUri);
+            string requestUri = $"{SecuredConstants.ApiRoot}{SecuredConstants.GetUploadServerMethod}?{Constants.AccessTokenPropertyName}={SecuredConstants.AccessToken}&{Constants.VersionPropertyName}={Constants.ApiVersion}";
+            var response = await client.GetAsync<GetUpoadServerResponse>(requestUri);
             string uploadUrl = response.Response.UploadUrl;
 
             string filePath = @"C:\Users\antko\OneDrive\Pictures\uzILxZSc_N.jpg";
             var uploadResponse = await client.PostMediaAsync<MediaUploadResponse>(uploadUrl, filePath);
+
+            string server = uploadResponse.Server;
+            string photo = uploadResponse.Photo;
+            string hash = uploadResponse.Hash;
+
+            string saveRequestUri = $"{SecuredConstants.ApiRoot}{SecuredConstants.SaveMediaMethod}?{Constants.ServerPropertyName}={server}&{Constants.PhotoPropertyName}={photo}&{Constants.HashPropertyName}={hash}&{Constants.AccessTokenPropertyName}={SecuredConstants.AccessToken}&{Constants.VersionPropertyName}={Constants.ApiVersion}";
+            var saveResponse = await client.GetAsync<SaveMediaResponse>(saveRequestUri);
+
+            var savedItems = saveResponse.Response;
+            foreach (var item in savedItems)
+            {
+                string attachmentId = $"{Constants.PhotoPropertyName}{item.OwnerId}_{item.Id}";
+                string postRequestUri = $"{SecuredConstants.ApiRoot}{SecuredConstants.PostMediaMethod}?message=test&{Constants.AttachmentsPropertyName}={attachmentId}&{Constants.AccessTokenPropertyName}={SecuredConstants.AccessToken}&{Constants.VersionPropertyName}={Constants.ApiVersion}";
+                var postResponse = await client.GetAsync<PostMediaResponse>(postRequestUri);
+            }
         }
     }
 }

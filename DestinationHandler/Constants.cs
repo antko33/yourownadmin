@@ -15,5 +15,10 @@
         public const string ServerPropertyName = "server";
         public const string PhotoPropertyName = "photo";
         public const string HashPropertyName = "hash";
+
+        public const string IdPropertyName = "id";
+        public const string OwnerIdPropertyName = "owner_id";
+        public const string AttachmentsPropertyName = "attachments";
+        public const string PostIdPropertyName = "post_id";
     }
 }
