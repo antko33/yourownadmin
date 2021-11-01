@@ -4,12 +4,10 @@ namespace DestinationHandler.HTTP
 {
     internal interface IHTTPClient
     {
-        public Task<TResponse> GetAsync<TRequest, TResponse>(string requestUri, TRequest request)
-            where TRequest : IHTTPRequest
+        public Task<TResponse> GetAsync<TResponse>(string requestUri)
             where TResponse : IHTTPResponse;
 
-        public Task<TResponse> PostAsync<TRequest, TResponse>(string requestUri, TRequest request)
-            where TRequest : IHTTPRequest
+        public Task<TResponse> PostAsync<TResponse>(string requestUri, IHTTPRequest request)
             where TResponse : IHTTPResponse;
     }
 }
