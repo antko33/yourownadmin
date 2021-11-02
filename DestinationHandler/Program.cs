@@ -18,7 +18,7 @@ namespace DestinationHandler
             var response = await client.GetAsync<GetUpoadServerResponse>(requestUri);
             string uploadUrl = response.Response.UploadUrl;
 
-            string filePath = @"C:\Users\antko\OneDrive\Pictures\uzILxZSc_N.jpg";
+            string filePath = @"https://images-api.intrepidgroup.travel/Peregrine/123909/8802845098014.jpg";
             var uploadResponse = await client.PostMediaAsync<MediaUploadResponse>(uploadUrl, filePath);
 
             string server = uploadResponse.Server;

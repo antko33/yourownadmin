@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.IO;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -34,13 +35,22 @@ namespace DestinationHandler.HTTP
         {
             MultipartFormDataContent formContent = new();
             formContent.Headers.ContentType.MediaType = "multipart/form-data";
-            Stream fileStream = File.OpenRead(sourceUrl);
-            formContent.Add(new StreamContent(fileStream), Constants.PhotoPropertyName, sourceUrl);
+
+            var responseStream = await GetResponseStream(sourceUrl);
+            formContent.Add(new StreamContent(responseStream), Constants.PhotoPropertyName, sourceUrl);
 
             HttpResponseMessage responseMessage = await client.PostAsync(requestUri, formContent);
             var responseStr = await responseMessage.Content.ReadAsStringAsync();
             TResponse result = JsonConvert.DeserializeObject<TResponse>(responseStr);
             return result;
+        }
+
+        public async Task<Stream> GetResponseStream(string url)
+        {
+            var webRequest = WebRequest.Create(url);
+            var response = await webRequest.GetResponseAsync();
+            var responseStream = response.GetResponseStream();
+            return responseStream;
         }
     }
 }
