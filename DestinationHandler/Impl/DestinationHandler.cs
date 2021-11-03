@@ -1,25 +1,20 @@
 ﻿using DestinationHandler.HTTP;
 using DestinationHandler.Models;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DestinationHandler
 {
-    class Program
+    internal class BlueDestinationImpl : IDestinationUploader
     {
-        public static async Task Main()
+        public async Task Upload(string sourceUrl)
         {
-            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-            Encoding.GetEncoding("windows-1254");
-
             KenotHTTPClient client = new();
 
             string requestUri = $"{SecuredConstants.ApiRoot}{SecuredConstants.GetUploadServerMethod}?{Constants.GroupIdPropertyName}={SecuredConstants.GroupId}&{Constants.AccessTokenPropertyName}={SecuredConstants.AccessToken}&{Constants.VersionPropertyName}={Constants.ApiVersion}";
             var response = await client.GetAsync<GetUpoadServerResponse>(requestUri);
             string uploadUrl = response.Response.UploadUrl;
 
-            string filePath = @"https://images-api.intrepidgroup.travel/Peregrine/123909/8802845098014.jpg";
-            var uploadResponse = await client.PostMediaAsync<MediaUploadResponse>(uploadUrl, filePath);
+            var uploadResponse = await client.PostMediaAsync<MediaUploadResponse>(uploadUrl, sourceUrl);
 
             string server = uploadResponse.Server;
             string photo = uploadResponse.Photo;
