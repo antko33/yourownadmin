@@ -20,5 +20,6 @@
         public const string OwnerIdPropertyName = "owner_id";
         public const string AttachmentsPropertyName = "attachments";
         public const string PostIdPropertyName = "post_id";
+        public const string GroupIdPropertyName = "group_id";
     }
 }
