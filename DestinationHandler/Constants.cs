@@ -21,5 +21,7 @@
         public const string AttachmentsPropertyName = "attachments";
         public const string PostIdPropertyName = "post_id";
         public const string GroupIdPropertyName = "group_id";
+        public const string FromGroupPropertyName = "from_group";
+        public const string CloseCommentsPropertyName = "close_comments";
     }
 }
