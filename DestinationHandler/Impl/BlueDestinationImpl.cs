@@ -1,5 +1,5 @@
-﻿using DestinationHandler.Data;
-using DestinationHandler.HTTP;
+﻿using CommonLibs.HTTP;
+using DestinationHandler.Data;
 using DestinationHandler.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -67,7 +67,7 @@ namespace DestinationHandler
 
         private async Task<PhotoData> GetPhotoData(string uploadUrl, string sourceUrl)
         {
-            var uploadResponse = await client.PostMediaAsync<MediaUploadResponse>(uploadUrl, sourceUrl);
+            var uploadResponse = await client.PostMediaAsync<MediaUploadResponse>(uploadUrl, Constants.PhotoPropertyName, sourceUrl);
 
             string server = uploadResponse.Server;
             string photo = uploadResponse.Photo;

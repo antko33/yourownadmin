@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DestinationHandler", "Desti
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADMApplication", "ADMApplication\ADMApplication.csproj", "{C81EF6A4-6669-47A1-8032-6718F3ABE009}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonLibs", "CommonLibs\CommonLibs.csproj", "{69B84C64-9DFA-41FF-93C8-39D7B90AB13F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{C81EF6A4-6669-47A1-8032-6718F3ABE009}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C81EF6A4-6669-47A1-8032-6718F3ABE009}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C81EF6A4-6669-47A1-8032-6718F3ABE009}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69B84C64-9DFA-41FF-93C8-39D7B90AB13F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69B84C64-9DFA-41FF-93C8-39D7B90AB13F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69B84C64-9DFA-41FF-93C8-39D7B90AB13F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69B84C64-9DFA-41FF-93C8-39D7B90AB13F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

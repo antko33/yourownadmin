@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 
-namespace DestinationHandler.HTTP
+namespace CommonLibs.HTTP
 {
-    internal interface IHTTPClient
+    public interface IHTTPClient
     {
         Task<TResponse> GetAsync<TResponse>(string requestUri)
             where TResponse : IHTTPResponse;
@@ -10,7 +10,7 @@ namespace DestinationHandler.HTTP
         Task<TResponse> PostAsync<TResponse>(string requestUri, IHTTPRequest request)
             where TResponse : IHTTPResponse;
 
-        Task<TResponse> PostMediaAsync<TResponse>(string requestUri, string sourceUrl)
+        Task<TResponse> PostMediaAsync<TResponse>(string requestUri, string fieldName, string sourceUrl)
             where TResponse : IHTTPResponse;
     }
 }

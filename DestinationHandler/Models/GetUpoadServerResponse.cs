@@ -1,4 +1,4 @@
-﻿using DestinationHandler.HTTP;
+﻿using CommonLibs.HTTP;
 using System.Runtime.Serialization;
 
 namespace DestinationHandler.Models

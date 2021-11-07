@@ -4,9 +4,9 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace DestinationHandler.HTTP
+namespace CommonLibs.HTTP
 {
-    internal class KenotHTTPClient : IHTTPClient
+    public class KenotHTTPClient : IHTTPClient
     {
         private readonly HttpClient client = new();
 
@@ -30,14 +30,14 @@ namespace DestinationHandler.HTTP
             return result;
         }
 
-        public async Task<TResponse> PostMediaAsync<TResponse>(string requestUri, string sourceUrl)
+        public async Task<TResponse> PostMediaAsync<TResponse>(string requestUri, string fieldName, string sourceUrl)
             where TResponse : IHTTPResponse
         {
             MultipartFormDataContent formContent = new();
             formContent.Headers.ContentType.MediaType = "multipart/form-data";
 
             var responseStream = await GetResponseStream(sourceUrl);
-            formContent.Add(new StreamContent(responseStream), Constants.PhotoPropertyName, sourceUrl);
+            formContent.Add(new StreamContent(responseStream), fieldName, sourceUrl);
 
             HttpResponseMessage responseMessage = await client.PostAsync(requestUri, formContent);
             var responseStr = await responseMessage.Content.ReadAsStringAsync();
