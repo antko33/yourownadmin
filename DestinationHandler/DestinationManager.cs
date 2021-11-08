@@ -1,4 +1,6 @@
-﻿namespace DestinationHandler
+﻿using CommonLibs.Interfaces;
+
+namespace DestinationHandler
 {
     public static class DestinationManager
     {

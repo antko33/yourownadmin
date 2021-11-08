@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace DestinationHandler
+namespace CommonLibs.Interfaces
 {
     public interface IDestinationUploader
     {

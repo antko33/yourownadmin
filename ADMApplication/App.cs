@@ -1,4 +1,7 @@
-﻿using DestinationHandler;
+﻿using CommonLibs;
+using CommonLibs.Interfaces;
+using DestinationHandler;
+using SourceHandler;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,9 +13,11 @@ namespace ADMApplication
         {
             Init();
 
-            string sourceUrl = @"https://images-api.intrepidgroup.travel/Peregrine/123909/8802845098014.jpg";
-            var uploader = DestinationManager.GetDestinationUploader();
-            await uploader.Upload(sourceUrl);
+            ISourceRetriever source = SourceManager.GetSourceRetriever();
+            string sourceUrl = await source.RetrieveItem();
+
+            IDestinationUploader destination = DestinationManager.GetDestinationUploader();
+            await destination.Upload(sourceUrl);
         }
 
         private static void Init()

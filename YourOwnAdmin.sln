@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADMApplication", "ADMApplic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonLibs", "CommonLibs\CommonLibs.csproj", "{69B84C64-9DFA-41FF-93C8-39D7B90AB13F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SourceHandler", "SourceHandler\SourceHandler.csproj", "{A489AD08-44CE-482E-8DDD-792712C4EE12}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{69B84C64-9DFA-41FF-93C8-39D7B90AB13F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69B84C64-9DFA-41FF-93C8-39D7B90AB13F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69B84C64-9DFA-41FF-93C8-39D7B90AB13F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A489AD08-44CE-482E-8DDD-792712C4EE12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A489AD08-44CE-482E-8DDD-792712C4EE12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A489AD08-44CE-482E-8DDD-792712C4EE12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A489AD08-44CE-482E-8DDD-792712C4EE12}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
