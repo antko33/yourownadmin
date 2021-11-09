@@ -19,6 +19,13 @@ namespace CommonLibs.HTTP
             return result;
         }
 
+        public async Task<string> GetRawAsync(string requestUri)
+        {
+            HttpResponseMessage responseMessage = await client.GetAsync(requestUri);
+            string responseStr = await responseMessage.Content.ReadAsStringAsync();
+            return responseStr;
+        }
+
         public async Task<TResponse> PostAsync<TResponse>(string requestUri, IHTTPRequest request)
             where TResponse : IHTTPResponse
         {

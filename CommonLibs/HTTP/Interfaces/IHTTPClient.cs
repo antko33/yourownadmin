@@ -7,6 +7,8 @@ namespace CommonLibs.HTTP
         Task<TResponse> GetAsync<TResponse>(string requestUri)
             where TResponse : IHTTPResponse;
 
+        Task<string> GetRawAsync(string requestUri);
+
         Task<TResponse> PostAsync<TResponse>(string requestUri, IHTTPRequest request)
             where TResponse : IHTTPResponse;
 

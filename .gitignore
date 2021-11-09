@@ -351,3 +351,4 @@ MigrationBackup/
 .gitsecret/keys/random_seed
 !*.secret
 DestinationHandler/SecuredConstants.cs
+SourceHandler/SecuredConstants.cs
