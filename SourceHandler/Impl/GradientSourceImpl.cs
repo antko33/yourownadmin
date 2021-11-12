@@ -3,6 +3,8 @@ using CommonLibs.Interfaces;
 using Newtonsoft.Json;
 using SourceHandler.Models;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SourceHandler.Impl
@@ -10,6 +12,7 @@ namespace SourceHandler.Impl
     internal class GradientSourceImpl : ISourceRetriever
     {
         private readonly KenotHTTPClient httpClient = new();
+        private readonly Random random = new();
 
         public async Task<string> RetrieveItem()
         {
@@ -24,12 +27,33 @@ namespace SourceHandler.Impl
             rawData = rawData[..endIndex];
 
             var sourceData = JsonConvert.DeserializeObject<SourceData>(rawData);
-            return sourceUrl;
+            List<string> availableUrls = new();
+            foreach (var item in sourceData.Edges)
+            {
+                var node = item.Node;
+                if (node.IsVideo)
+                {
+                    continue;
+                }
+
+                if (node.Children == null)
+                {
+                    availableUrls.Add(node.DisplayUrl);
+                }
+                else
+                {
+                    availableUrls.AddRange(node.Children.Edges.Where(i => !i.Node.IsVideo).Select(i => i.Node.DisplayUrl));
+                }
+            }
+
+            int index = random.Next(availableUrls.Count);
+            //return availableUrls[index];
+            return @"https://klkfavorit.ru/wp-content/uploads/3/3/7/337ba1247298643b77ac8e18869a72be.jpeg";
         }
 
         private string GetSourceItemUrl()
         {
-            int index = new Random().Next(SecuredConstants.SourceList.Count);
+            int index = random.Next(SecuredConstants.SourceList.Count);
             string sourceItemName = SecuredConstants.SourceList[index];
             return string.Format(SecuredConstants.SourceUrlPattern, sourceItemName);
         }

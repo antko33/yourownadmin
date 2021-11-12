@@ -10,5 +10,6 @@
         public const string ShortCodePropertyName = "shortcode";
         public const string IsVideoPropertyName = "is_video";
         public const string AccessibilityCaptionPropertyName = "accessibility_caption";
+        public const string DisplayUrlPropertyName = "display_url";
     }
 }

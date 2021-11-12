@@ -16,8 +16,8 @@ namespace ADMApplication
             ISourceRetriever source = SourceManager.GetSourceRetriever();
             string sourceUrl = await source.RetrieveItem();
 
-            //IDestinationUploader destination = DestinationManager.GetDestinationUploader();
-            //await destination.Upload(sourceUrl);
+            IDestinationUploader destination = DestinationManager.GetDestinationUploader();
+            await destination.Upload(sourceUrl);
         }
 
         private static void Init()
