@@ -37,17 +37,26 @@ namespace CommonLibs.HTTP
             return result;
         }
 
-        public async Task<TResponse> PostMediaAsync<TResponse>(string requestUri, string fieldName, string sourceUrl)
+        public async Task<TResponse> PostMediaAsync<TResponse>(string requestUri, string sourceUrl)
             where TResponse : IHTTPResponse
         {
             MultipartFormDataContent formContent = new();
             formContent.Headers.ContentType.MediaType = "multipart/form-data";
 
-            var responseStream = await GetResponseStream(sourceUrl);
-            formContent.Add(new StreamContent(responseStream), fieldName, sourceUrl);
+            if (File.Exists(SecuredConstants.TempMediaName))
+            {
+                File.Delete(SecuredConstants.TempMediaName);
+            }
+
+            WebClient webClient = new();
+            webClient.DownloadFile(sourceUrl, SecuredConstants.TempMediaName);
+
+            FileStream fileStream = File.OpenRead(SecuredConstants.TempMediaName);
+            formContent.Add(new StreamContent(fileStream), SecuredConstants.MediaPropertyName, fileStream.Name);
 
             HttpResponseMessage responseMessage = await client.PostAsync(requestUri, formContent);
             var responseStr = await responseMessage.Content.ReadAsStringAsync();
+
             TResponse result = JsonConvert.DeserializeObject<TResponse>(responseStr);
             return result;
         }

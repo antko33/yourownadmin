@@ -47,8 +47,7 @@ namespace SourceHandler.Impl
             }
 
             int index = random.Next(availableUrls.Count);
-            //return availableUrls[index];
-            return @"https://klkfavorit.ru/wp-content/uploads/3/3/7/337ba1247298643b77ac8e18869a72be.jpeg";
+            return availableUrls[index];
         }
 
         private string GetSourceItemUrl()

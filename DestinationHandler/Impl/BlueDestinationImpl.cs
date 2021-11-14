@@ -68,7 +68,7 @@ namespace DestinationHandler
 
         private async Task<PhotoData> GetPhotoData(string uploadUrl, string sourceUrl)
         {
-            var uploadResponse = await client.PostMediaAsync<MediaUploadResponse>(uploadUrl, Constants.PhotoPropertyName, sourceUrl);
+            var uploadResponse = await client.PostMediaAsync<MediaUploadResponse>(uploadUrl, sourceUrl);
 
             string server = uploadResponse.Server;
             string photo = uploadResponse.Photo;
